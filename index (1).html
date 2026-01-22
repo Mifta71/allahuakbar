@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>DOCUMENT SELECTION ANNOUNCEMENT</title>
+    <style>
+        body {
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/710/68/1008/trees-mountain-lake-shore-wallpaper-preview.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body class="flex items-center justify-center p-4">
+    <main class="bg-white rounded-xl max-w-lg w-full p-8 shadow-2xl animate__animated animate__backInDown">
+
+        <div id="initial-content">
+            <div class="flex justify-center mb-6">
+                <img id="cat-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuaitF046hU7cqKwaTneljYJvI7tO9mCS_4RuNa76pQ-dfzT6g_y1S9uP5kt2nNFlzU-5cBvB0TM88HpT_KJtKK3kfP8-IYzvVYWl35eJXhlRrjFUUvTxxh_7ogZin0_0wpj0X9yrU3Ww/s640/envelope.gif" alt="Announcement" class="w-64 h-64 object-cover rounded-lg shadow-md" />
+            </div>
+
+            <div class="text-center mb-8">
+                <h2 class="text-gray-800 text-2xl font-bold mb-2">Terima kasih atas partisipasi anda!</h2>
+                <p class="text-gray-600 text-lg">Apakah Anda ingin melihat hasil pengumumannya?</p>
+            </div>
+
+            <div class="flex justify-center gap-4">
+                <button id="btn-yes" class="bg-green-500 hover:bg-green-600 transition-colors text-white font-bold py-3 px-8 rounded-lg text-xl shadow-lg animate__animated animate__pulse animate__infinite">
+                    Oke
+                </button>
+                <button id="btn-no" class="bg-red-500 hover:bg-red-600 transition-colors text-white font-bold py-3 px-8 rounded-lg text-xl shadow-lg">
+                    Tunggu
+                </button>
+            </div>
+        </div>
+
+        <div id="result-content" class="hidden">
+            <div class="w-full mb-5 animate__animated animate__zoomIn">
+                <img src="logo.png" alt="ITS Laboratory Logo" 
+                     class="w-full h-auto rounded-t-lg shadow-sm-block" 
+                     onerror="this.src='https://via.placeholder.com/800x200?text=LOGO+LABORATORIUM'"/>
+            </div>
+
+            <div class="border-b-2 border-gray-100 mb-6"></div>
+
+            <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg mb-8 animate__animated animate__fadeInUp">
+                <p class="text-red-700 text-lg leading-relaxed italic">
+                    "Terima kasih atas partisipasi Anda! Sayangnya, Anda belum terpilih untuk melaju ke tahap selanjutnya. Meskipun Anda belum berhasil kali ini, kami sangat menghargai usaha dan antusiasme Anda. Teruslah berkembang dan jangan menyerah untuk mencoba lagi di lain kesempatan!!"
+                </p>
+            </div>
+
+            <div class="text-right text-gray-700 animate__animated animate__fadeIn">
+                <p class="font-semibold mb-1">Salam Hangat,</p>
+                <p class="font-bold text-blue-900">Koordinator Laboratorium Fisika Dasar I</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const initialContent = document.getElementById('initial-content');
+        const resultContent = document.getElementById('result-content');
+        const yesButton = document.getElementById('btn-yes');
+        const noButton = document.getElementById('btn-no');
+        const catImg = document.getElementById('cat-img');
+
+        const listGambar = [
+            "https://media.tenor.com/dKJ_vGqO9qgAAAAM/nailong-yellow-dragon.gif",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTWXgTYXZ_l0FQrUY4-flHiOs0QlNl8GzTJqDJ8hlky3avrGMV4KNq8ZPURriGo8XXpqo&usqp=CAU",
+            "https://media.tenor.com/fBT-KRZP79IAAAAM/yellow-dragon-nailong.gif",
+            "https://media.tenor.com/3-SEeLRRnLUAAAAM/%E5%A5%B6%E9%BE%99.gif",
+            "https://i.pinimg.com/736x/7c/9c/a9/7c9ca98fdf96382d685e5b59c0dda0aa.jpg"
+        ];
+
+        const noMessages = ["No", "Are you sure?", "Hold on...", "Wait wait!", "Please?", "Check it!"];
+        let noCount = 0;
+
+        yesButton.addEventListener('click', () => {
+            initialContent.classList.add('hidden');
+            resultContent.classList.remove('hidden');
+            // Menambahkan animasi fade in saat hasil muncul
+            resultContent.classList.add('animate__animated', 'animate__fadeIn');
+        });
+
+        noButton.addEventListener('click', () => {
+            if (noCount < listGambar.length) {
+                catImg.src = listGambar[noCount];
+            }
+            noCount++;
+            if (noCount < noMessages.length) {
+                noButton.textContent = noMessages[noCount];
+            } else {
+                noButton.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
